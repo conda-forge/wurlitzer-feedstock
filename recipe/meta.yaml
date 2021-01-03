@@ -1,5 +1,5 @@
 {% set name = "wurlitzer" %}
-{% set version = "2.0.0" %}
+{% set version = "2.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,20 +7,22 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 86a510c0d34fcc9786ad1a9f557ac980f30ef2f821a75c2e4333311e0fd9cd76
+  sha256: d08f0728a998441aac3d7a0f8cd6dfed2ba2525144878fb49599b719085b7543
 
 build:
   skip: true  # [win]
-  number: 2
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
 
 requirements:
+  build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - python
     - pip
   run:
     - python
-    - selectors2  # [py2k]
 
 test:
   imports:
@@ -31,10 +33,11 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Capture C-level stdout/stderr in Python'
+  summary: Capture C-level stdout/stderr in Python
 
 extra:
   recipe-maintainers:
     - minrk
     - bjodah
     - asmeurer
+    - ccordoba12
