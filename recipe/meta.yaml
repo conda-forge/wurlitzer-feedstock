@@ -1,5 +1,5 @@
 {% set name = "wurlitzer" %}
-{% set version = "3.0.0" %}
+{% set version = "3.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 01cb41f3bccc339632a28cb147b622241e785c23e11c69ce08efad5ebd2c427f
+  sha256: 2a20270b23854493c6cf701ac3a1d30638b90281d80a42f9d91e258f6a0fa20d
 
 build:
   skip: true  # [win or py<35]
